@@ -21,6 +21,11 @@ app.post('/post', async(req,res)=>{
     res.json(result)
 })
 
+app.get('/posts', async(req,res)=>{
+    const posts = await prisma. post.findMany()
+    res.json(posts)
+})
+
 app.listen(3001, () =>
     console.log(`Server ready at: http//:localhost:3001`)
 )
