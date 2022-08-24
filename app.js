@@ -36,6 +36,14 @@ app.put('/post/:id', async(req,res)=>{
     res.json(post)
 })
 
+app.delete('/post/:id', async(req,res) => {
+    const {id} = req.params
+    const post = await prisma.post.delete({
+        where: {id: Number(id)}
+    })
+    res.json('Registro Eliminado')
+})
+
 app.listen(3001, () =>
     console.log(`Server ready at: http//:localhost:3001`)
 )
