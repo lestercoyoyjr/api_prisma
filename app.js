@@ -26,6 +26,16 @@ app.get('/posts', async(req,res)=>{
     res.json(posts)
 })
 
+app.put('/post/:id', async(req,res)=>{
+    const {id} = req.params
+    const {title, content} = req.body
+    const post = await prisma.post.update({
+        where: {id: Number(id)},
+        data: {title, content}
+    })
+    res.json(post)
+})
+
 app.listen(3001, () =>
     console.log(`Server ready at: http//:localhost:3001`)
 )
